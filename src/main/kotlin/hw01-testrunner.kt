@@ -1,3 +1,6 @@
+import kotlin.reflect.full.declaredFunctions
+
+
 fun main(args: Array<String>) {
     val myRunner = MyTestRunner()
     val mySteps = Steps()
@@ -28,7 +31,6 @@ class Steps {
     fun randomFunction() {
         println("Some random function")
     }
-
 }
 
 fun test() {
@@ -38,10 +40,9 @@ fun test() {
 class MyTestRunner : TestRunner<Steps> {
     override fun runTest(steps: Steps, test: () -> Unit) {
 
-        steps.run {
-            println("BEFORE FUNCTIONS")
-            beforeAll()
-            beforeEach()
+        steps::class.declaredFunctions.filter { it.name.contains("before") }.forEach{
+            println("BEFORE FUNCTION: ${it.name}")
+            it.call(steps)
         }
 
         test.run {
@@ -49,10 +50,9 @@ class MyTestRunner : TestRunner<Steps> {
             invoke()
         }
 
-        steps.run {
-            println("AFTER FUNCTIONS")
-            afterAll()
-            afterEach()
+        steps::class.declaredFunctions.filter { it.name.contains("after") }.forEach{
+            println("AFTER FUNCTIONS ${it.name}")
+            it.call(steps)
         }
     }
 }
