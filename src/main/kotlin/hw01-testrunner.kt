@@ -1,10 +1,12 @@
 import kotlin.reflect.full.declaredFunctions
 
 
-fun main(args: Array<String>) {
-    val myRunner = MyTestRunner()
+fun main() {
+    val myRunner = MyTestRunner<Steps>()
     val mySteps = Steps()
     myRunner.runTest(steps = mySteps, test = { test() })
+    println("Проверка второго класса")
+    MyTestRunner<Steps2>().runTest(steps = Steps2(), test = { test() })
 }
 
 interface TestRunner<T> {
@@ -32,13 +34,34 @@ class Steps {
         println("Some random function")
     }
 }
+class Steps2 {
+    fun beforeAll2() {
+        println("Clear cache2")
+    }
+
+    fun beforeEach2() {
+        println("Log in2")
+    }
+
+    fun afterAll2() {
+        println("Save logs2")
+    }
+
+    fun afterEach2() {
+        println("Log out2")
+    }
+
+    fun randomFunction2() {
+        println("Some random function2")
+    }
+}
 
 fun test() {
     println("Run test")
 }
 
-class MyTestRunner : TestRunner<Steps> {
-    override fun runTest(steps: Steps, test: () -> Unit) {
+class MyTestRunner<T:Any> : TestRunner<T> {
+    override fun runTest(steps: T, test: () -> Unit) {
 
         steps::class.declaredFunctions.filter { it.name.contains("before") }.forEach{
             println("BEFORE FUNCTION: ${it.name}")
