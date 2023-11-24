@@ -1,7 +1,7 @@
-package example
+package hw_01_example
 
-import example.dsl.testAround
-import example.tests.*
+import hw_01_example.dsl.testAround
+import hw_01_example.tests.*
 
 /**
  * В main применен вызов DSL функции testAround с вынесенной за скобки в лямбду функцией

@@ -1,4 +1,4 @@
-package example
+package hw_01_example
 
 /**
  * Дан интерфейс interface TestRunner { fun  runTest(steps: T, test: () -> Unit) }.

@@ -1,6 +1,6 @@
-package example.runner
+package hw_01_example.runner
 
-import example.TestRunner
+import hw_01_example.TestRunner
 import kotlin.reflect.KFunction
 import kotlin.reflect.full.declaredFunctions
 import kotlin.reflect.full.declaredMemberFunctions

@@ -1,4 +1,4 @@
-package example.tests
+package hw_01_example.tests
 
 
 class BeforeTwiceAndAfterTwiceTestClass {

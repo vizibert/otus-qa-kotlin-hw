@@ -1,6 +1,6 @@
-package example.dsl
+package hw_01_example.dsl
 
-import example.runner.TestAround
+import hw_01_example.runner.TestAround
 
 /**
  * Здесь определяется функция DSL  testAround
