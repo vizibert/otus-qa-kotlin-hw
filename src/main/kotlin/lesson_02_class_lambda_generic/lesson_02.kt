@@ -1,0 +1,2 @@
+package lesson_02_class_lambda_generic
+

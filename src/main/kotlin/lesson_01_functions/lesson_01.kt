@@ -1,4 +1,4 @@
-package lesson_01
+package lesson_01_functions
 
 fun main() {
     println("Otus".shuffle())
