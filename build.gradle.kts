@@ -47,6 +47,7 @@ tasks.test {
     jvmArgs = listOf(
         "-javaagent:${agent.singleFile}"
     )
+    useJUnitPlatform()
 }
 
 tasks.getByName<Test>("test") {
