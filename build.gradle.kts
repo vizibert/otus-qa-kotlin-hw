@@ -36,14 +36,29 @@ application {
 }
 
 // Configure javaagent for test execution
-tasks.test {
-    jvmArgs = listOf(
-        "-javaagent:${agent.singleFile}"
-    )
-    useJUnitPlatform()
+tasks {
+
+    test {
+        jvmArgs = listOf("-javaagent:${agent.singleFile}")
+        useJUnitPlatform()
+    }
+
+    getByName<Test>("test") {
+        useJUnitPlatform()
+        finalizedBy("jacocoTestReport", "allureReport")
+    }
+
+    register("test-smoke", Test::class) {
+        useJUnitPlatform {
+            setTestNameIncludePatterns(listOf("lesson_04_gradle.smoke.*"))
+        }
+    }
+
+    register("test-smoke-positive", Test::class) {
+        useJUnitPlatform {
+            setTestNameIncludePatterns(listOf("lesson_04_gradle.smoke.*"))
+            includeTags("positive")
+        }
+    }
 }
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-    finalizedBy("jacocoTestReport", "allureReport")
-}
