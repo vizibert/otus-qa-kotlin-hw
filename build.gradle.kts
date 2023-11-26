@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "1.9.20"
     application
     id("io.qameta.allure") version "2.11.2"
+    id("com.adarshr.test-logger") version "4.0.0"
     jacoco
 }
 
@@ -10,6 +11,10 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+testlogger {
+    showPassed = true
 }
 
 val agent: Configuration by configurations.creating {
