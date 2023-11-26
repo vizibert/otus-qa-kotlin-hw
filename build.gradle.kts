@@ -35,7 +35,6 @@ application {
     mainClass.set("MainKt")
 }
 
-// Configure javaagent for test execution
 tasks {
 
     test {
