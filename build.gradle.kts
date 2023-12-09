@@ -3,6 +3,8 @@ plugins {
     application
     id("io.qameta.allure") version "2.11.2"
     id("com.adarshr.test-logger") version "4.0.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.3"
+    id("org.jlleitschuh.gradle.ktlint") version "12.0.2"
     jacoco
 }
 
@@ -78,5 +80,4 @@ tasks {
     withType<Test>().configureEach {
         useJUnitPlatform()
     }
-
 }
